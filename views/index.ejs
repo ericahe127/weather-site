@@ -8,16 +8,19 @@
     <title>Weather</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container mt-5">
         <div class="row align-items-center g-lg-5 py-5">
             <div class="col-lg-7 text-center text-lg-start">
-                <% if (locals.weather) {%>
+                <% if (locals.data) {%>
                     <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">
-        
+                        Temperature: <%= data.main.temp %> 
+                    </br> City: <%= data.name %>, <%= data.sys.country %>
                     </h1>
-                    <p class="col-lg-10 fs-4">
-        
-                    </p>
+                    <!-- <p class="col-lg-10 fs-4"> -->
+                    <h3 class="text-body-emphasis mb-3">
+                        Wind speed: <%= data.wind.speed %>
+                    </h3>
+                    <!-- </p> -->
                     <% } else { %>
                         <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">
                             Get temperature, pressure, wind intensity ... <br>
@@ -26,7 +29,7 @@
                         <% } %>
             </div>
             <div class="col-md-10 mx-auto col-lg-5">
-                <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" method="get">
+                <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" method="post" action="/get">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="floating" placeholder="23.128994" name="lat">
                         <label for="floatingInput">Latitude</label>
@@ -37,8 +40,7 @@
                     </div>
         
                     <!-- <button class="w-100 btn btn-lg btn-primary" type="submit">Get Weather</button> -->
-                    <input class="w-100 btn btn-lg btn-primary" id="get-weather" type="submit" value="Get Weather"
-                        formaction="/get">
+                    <input class="w-100 btn btn-lg btn-primary" id="get-weather" type="submit" value="Get Weather">
                 </form>
             </div>
         </div>
